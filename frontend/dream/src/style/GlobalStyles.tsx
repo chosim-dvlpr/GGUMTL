@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
 * {
 	font-family: "HakgyoansimWoojuR";
   font-weight: 300;
-
+  font-display: swap;
 }
 
 article, aside, details, figcaption, figure, 
