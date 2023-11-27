@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, lazy, Suspense} from 'react';
 import GlobalStyle from './style/GlobalStyles';
 import {ThemeProvider} from "styled-components"
 import { sunsetTheme,nightTheme, dayTheme } from './style/theme';
@@ -37,10 +37,12 @@ import ChalCreateCertPage from 'pages/day/challenge/ChalCreateCertPage';
 import ChalCapsuleListPage from 'pages/day/capsule/ChalCapsuleListPage';
 import RecommendChalPage from 'pages/day/recommend/RecommendChalPage';
 import DayAlertPage from 'pages/alert/DayAlertPage';
-import BackgroundImage from 'style/backgroundImage';
+// import BackgroundImage from 'style/backgroundImage';
 import DayProfilePage from 'pages/day/profile/DayProfilePage';
 import NotFoundPage from 'pages/sunset/NotFoundPage';
 import StartPage from 'pages/sunset/StartPage';
+
+const BackgroundImage = lazy(() => import('style/backgroundImage'));
 
 function App() {
 
@@ -88,7 +90,10 @@ function App() {
   return (
     <>
     {/* <ThemeProvider theme={theme}> */}
-    <BackgroundImage backgroundimage={themeMode.backgroundImageUrl}/>
+    <Suspense fallback={<div></div>}>
+      <BackgroundImage backgroundimage={themeMode.backgroundImageUrl}/>
+    </Suspense>
+    
     <GlobalStyle/>
       <Routes>
         {/* 초기 3개 화면 */}
