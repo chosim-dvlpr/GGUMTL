@@ -82,7 +82,7 @@ const ChalCapsuleList = () => {
       {timeCapsuleOpenSignal ? (
         <>
           <Image $timeCapsuleImage>
-            <img src={`${process.env.PUBLIC_URL}/image/icon/timecapsule.png`}></img>
+            <img loading="lazy" src={`${process.env.PUBLIC_URL}/image/icon/timecapsule.png`}></img>
           </Image>
           <Box $tiemCapsuleChalTitleBox>{chalTitle}</Box>
           <InfiniteScroll 
@@ -97,7 +97,7 @@ const ChalCapsuleList = () => {
         </>
       ) : (
         <Image $timeCapsuleLoading>  
-          <img src={`${process.env.PUBLIC_URL}/image/timecapsule-loading.gif`}></img>
+          <img loading="lazy" src={`${process.env.PUBLIC_URL}/image/timecapsule-loading.gif`}></img>
         </Image>
       )}
   </Container>

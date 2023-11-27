@@ -25,7 +25,7 @@ const ChalCommentItem = ({ commentData }: CommentItemTypeProps) => {
     <>
       <Wrap $commentWrap>
         <Image $tinyProfileImage>
-          <img src={commentData.profileImageUrl}></img>
+          <img loading="lazy" src={commentData.profileImageUrl}></img>
         </Image>
         <div className="contentarea">
           <Text $black $isBold>

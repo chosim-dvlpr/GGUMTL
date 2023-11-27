@@ -128,7 +128,7 @@ const ChalCertArticleItem = ({ certData }: CertArticleItemProps) => {
             // 여기에 이동하는 곳
             onClick={moveUserProfile}
           >
-            <img src={certData?.photoUrl} alt="없음" />
+            <img loading='lazy' src={certData?.photoUrl} alt="없음" />
           </ProfileImage>
           <Text $verticalAlign $nightWhite onClick={moveUserProfile}>
             {certData?.nickname}{' '}
@@ -142,7 +142,7 @@ const ChalCertArticleItem = ({ certData }: CertArticleItemProps) => {
 
       {/* 인증 이미지 */}
       <Image $mainImage $dayImageBorder>
-        <img src={certData?.photoUrl} alt="없음" />
+        <img loading='lazy' src={certData?.photoUrl} alt="없음" />
       </Image>
 
       {/* 인증 글 하단바 */}

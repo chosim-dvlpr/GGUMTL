@@ -201,7 +201,7 @@ const DayStoryDetail = ({setIsOpenModal, isOpenModal, userId} :DayStoryDetailPro
               </Box>
             </div>
               <Image $mainImage $nightImageBorder>
-                <img src={storyList[currentIndex].photoUrl}></img>
+                <img loading="lazy" src={storyList[currentIndex].photoUrl}></img>
               </Image>
               <Text>{storyList[currentIndex].nickName}</Text>
               <Box $challengeContentBox

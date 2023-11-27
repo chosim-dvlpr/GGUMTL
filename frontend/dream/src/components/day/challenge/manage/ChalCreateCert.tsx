@@ -149,13 +149,14 @@ const ChalCreateCert = () => {
     <Container $dayBaseContainer $certCreate>
       <Box $mainTitleBox>
         {/* 뱃지 이미지 아직 안됨 */}
-        <img src={`${chalData?.badgeUrl}`}></img>
+        <img loading="lazy" src={`${chalData?.badgeUrl}`}></img>
         {chalData?.challengeTitle}
       </Box>
 
       {profileImageURL ? (
         <Image $certImage>
-          <img
+          <img 
+            loading="lazy"
             src={profileImageURL}
             onClick={imageInputClick}
           />

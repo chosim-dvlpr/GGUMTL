@@ -101,7 +101,7 @@ const DayStoryList = () => {
           key={key}
           onClick={() => showStoryModal(data.userId)}
           >
-            <img src={data.imageUrl}></img>
+            <img loading="lazy" src={data.imageUrl}></img>
           </Image>
         ))
       }

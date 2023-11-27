@@ -147,7 +147,7 @@ const ChalManageDetail = () => {
   return (
     <Container $dayBaseContainer $dayCreate>
       <Box $mainTitleBox onClick={()=>{navigate(`/day/challenge/${chalData.challengeId}`)}}>
-        <img src={`${chalData?.badgeUrl}`}></img> 
+        <img loading="lazy" src={`${chalData?.badgeUrl}`}></img> 
         {chalData?.challengeTitle}
       </Box>
       <Box $wideTextBox $day>
@@ -201,7 +201,7 @@ const ChalManageDetail = () => {
         disabled={!possibleTimecapsule}
         onClick={()=>{{navigate(`/day/challenge/${currentChallengeId}/timecapsule`)}}}
       >
-        <img src={`${process.env.PUBLIC_URL}/image/icon/timecapsule.png`}></img>
+        <img loading="lazy" src={`${process.env.PUBLIC_URL}/image/icon/timecapsule.png`}></img>
         <Text $isBold>타임 캡슐</Text>
       </Button>
 

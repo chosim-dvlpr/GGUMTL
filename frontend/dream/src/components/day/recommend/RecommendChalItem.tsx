@@ -17,7 +17,7 @@ const RecommendChalItem = ({chal}: RecommendChalItemProps) => {
   return (
     <Box $recommendChalBox onClick={()=>{navigate(`/day/challenge/${chal.challengeId}`)}}>
       <Image $badge $largeBadge $recommendBadge>
-        <img src={chal.badgeUrl} alt="뱃지" />
+        <img loading="lazy" src={chal.badgeUrl} alt="뱃지" />
       </Image>
       <Text $recommendCardTitle>{chal.title}</Text>
       <p>{chal.period}</p>
