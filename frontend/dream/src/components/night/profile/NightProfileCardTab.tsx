@@ -1,22 +1,18 @@
-// 카드 탭
-// 버튼 : 공개, 구매 (본인일 때만 보임. 아니면 안 보여)
-// 사진 리스트 (NightImage)
-
 // 리액트
 import React, { useEffect, useState } from "react";
-import tokenHttp from "api/tokenHttp";
 import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { RootState } from "store";
 
 // 컴포넌트
+import tokenHttp from "api/tokenHttp";
+import Button from "components/common/Button";
 import InfiniteScroll from "components/common/InfiniteScroll";
 
 // 스타일
-import Button from "components/common/Button";
 import Image from "style/Image";
 import styled from "styled-components";
 import Text from "style/Text";
-import { useNavigate, useParams } from "react-router-dom";
-import { RootState } from "store";
 
 const ProfileCardButtonWrap = styled.div`
   margin: 1rem 0.5rem;
@@ -45,34 +41,27 @@ export interface ProfileDreamCardAxiosType {
 const NightProfileCardTab = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const userId = useSelector((state: RootState) => state.auth.userdata.userId); // 내 아이디
+  const userId = useSelector((state: RootState) => state.auth.userdata.userId);
   const [isMyProfile, setIsMyProfile] = useState<boolean>(false);
 
-  // axios로 보내야 할 데이터
   const profileId :number = Number(params.userId);
   const [lastItemId, setLastItemId] = useState<number>(0);
   const [noCardMsg, setNoCardMsg] = useState<string>("");
   const [hasNext, setHasNext] = useState<boolean>(true); 
   let size = 16;
   
-  // Infinite scroll
   const [arriveEnd, setArriveEnd] = useState<boolean>(true);
-  
-  // axios로 받아서 업데이트 할 데이터
   const [dreamCardList, setDreamCardList] = useState<ProfileDreamCardAxiosType[]>([]);
   
   const getAxios = () => {
     let apiAddress :string = "";
 
-    // 처음 요청 받을 때 : lastItemId 없음
     if (lastItemId === 0) {apiAddress = `/profile/night/card/${profileId}?size=${size}`}
-    // 두번째부터 요청 할 때
     else {apiAddress = `/profile/night/card/${profileId}?lastItemId=${lastItemId}&size=${size}`}
     
-    if (arriveEnd && hasNext) {  // 끝에 도달하고 다음이 있을 때 다음 데이터 호출
+    if (arriveEnd && hasNext) {
       tokenHttp.get(apiAddress)
       .then((res) => {
-        console.log("밤 꿈 카드 탭 : ", res.data)
         const response = res.data
         const data = response.data
 
@@ -125,7 +114,6 @@ const NightProfileCardTab = () => {
   }, [dreamCardList]);
 
 
-  // 바닥에 다다랐으면 axios 요청
   useEffect(() => {
     if (arriveEnd) {
       getAxios();
@@ -137,7 +125,6 @@ const NightProfileCardTab = () => {
   useEffect(() => {
     if (params && userId === Number(params.userId)) {
       setIsMyProfile(true)
-      // console.log(isMyProfile, "=====")
     }
   }, [userId, params])
 
@@ -175,7 +162,6 @@ const NightProfileCardTab = () => {
       : <ProfileDreamCardWrap>
           <InfiniteScroll
           setArriveEnd={setArriveEnd} 
-          // lastItemId={lastItemId}
           component={
             dreamCardList
             .filter((card) => (isShowAllCard ? card.isShow === "T" : true))

@@ -1,13 +1,8 @@
-
-// .map
-// CircleImage (프로필 이미지)
-// onClick할 때 스토리로 가기. ~ Router {/* <DayStoryDetailPage></DayStoryDetailPage> */}
-
 // 리액트
 import React, { useState, useEffect } from "react";
-import tokenHttp from "api/tokenHttp";
 
 // 컴포넌트
+import tokenHttp from "api/tokenHttp";
 import DayStoryDetail from "./DayStoryDetail";
 import InfiniteScrollHorizon from "components/common/InfiniteScrollHorizon";
 
@@ -26,26 +21,22 @@ export interface StoryDataListType extends Array<StoryDataObjType> {}
 
 const DayStoryList = () => {
   const [storyDataList, setStoryDataList] = useState<StoryDataListType>([]);
-  const [lastItemId, setLastItemId] = useState<number>(0); // 마지막 아이템 번호
+  const [lastItemId, setLastItemId] = useState<number>(0);
   const [hasNext, setHasNext] = useState<boolean>(true); 
   let size = 8;
 
   // infinite scroll
-  const [arriveEnd, setArriveEnd] = useState<boolean>(true); // 바닥에 다다름을 알려주는 변수
+  const [arriveEnd, setArriveEnd] = useState<boolean>(true);
 
-  // axios 연결 - 팔로우 유저 목록 조회
   const getAxios = () => {
     let apiAddress :string = "";
 
-    // 처음 요청
     if (lastItemId === 0) {apiAddress = `/day/challenge/story/user-list?size=${size}`}
-    // 두번째부터 요청
     else {apiAddress = `/day/challenge/story/user-list?lastItemId=${lastItemId}&size=${size}`}
+
     if (arriveEnd && hasNext) {
       tokenHttp.get(apiAddress)
-      .then((res) => {
-        console.log("스토리 리스트 : ", res)
-        
+      .then((res) => {        
         if (res.status === 200) {
           const response = res.data.data
           const resultList = response.resultList
@@ -93,7 +84,6 @@ const DayStoryList = () => {
 
       <InfiniteScrollHorizon
       setArriveEnd={setArriveEnd} 
-      // lastItemId={lastItemId}
       component={
         storyDataList?.map((data :StoryDataObjType, key :number) => (
         <Image
@@ -101,7 +91,7 @@ const DayStoryList = () => {
           key={key}
           onClick={() => showStoryModal(data.userId)}
           >
-            <img loading="lazy" src={data.imageUrl}></img>
+            <img loading="lazy" src={data.imageUrl} />
           </Image>
         ))
       }

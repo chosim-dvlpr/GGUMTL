@@ -1,15 +1,11 @@
 // 리액트
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "store";
-
-// 외부 라이브러리
-import tokenHttp from "api/tokenHttp";
 
 // 컴포넌트
+import tokenHttp from "api/tokenHttp";
+import Wrap from "style/Wrap";
 
 // 스타일
-import Wrap from "style/Wrap";
 import { AiOutlineClose } from "react-icons/ai";
 import Text from "style/Text";
 import { Box } from "style/Box";
@@ -47,31 +43,23 @@ const StoryBar = styled.div<StoryBarProps>`
 
 
 const DayStoryDetail = ({setIsOpenModal, isOpenModal, userId} :DayStoryDetailProps) => {
-  // const auth = useSelector((state: RootState) => state.auth);
-  const [storyList, setStoryList] = useState<StoryType[]>([]); // axios로 새로 받아올 데이터
+  const [storyList, setStoryList] = useState<StoryType[]>([]);
   
-  // 모달을 닫음
   const handleIsOpenModal = () => {
-    setIsOpenModal(false); // 모달 닫음
-    setCurrentIndex(0); // 스토리 인덱스 0으로 초기화
+    setIsOpenModal(false);
+    setCurrentIndex(0); // 스토리 인덱스 초기화
     console.log("모달 닫기");
   }
-
-
-  // API 연결
-  // userId는 상대방의 ID를 넣어야 함
-  // const userId = props.userId;
 
   useEffect(() => {
       tokenHttp.get(`/day/challange/story/${userId}`)
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
-          setStoryList(res.data.data); // 데이터 저장
+          setStoryList(res.data.data);
         }
         // 팔로우한 유저가 올린 글이 없을 때
         if (res.data.status === 400) {
-          // setIsStoryData(false)
         }
       })
       .catch(err => console.log(err))
@@ -101,12 +89,12 @@ const DayStoryDetail = ({setIsOpenModal, isOpenModal, userId} :DayStoryDetailPro
         setCurrentIndex(1);
       }, interval);
     }
-    return timerId; // 타이머가 시작되지 않으면 undefined 반환
+    return timerId;
   }
 
   // 일정시간 후 다음 페이지로 이동
-  const goToNextInterval = async () :Promise<void> => {
-    await nextTime(() => {
+  const goToNextInterval = (): void => {
+    nextTime(() => {
       console.log('다음');
       if (isOpenModal && currentIndex + 1 < storyList.length) {
         setCurrentIndex(currentIndex+1);
@@ -157,8 +145,6 @@ const DayStoryDetail = ({setIsOpenModal, isOpenModal, userId} :DayStoryDetailPro
   return (
     <>
     {
-      // isOpenModal &&
-      // storyList && 
       currentIndex < storyList.length &&
       currentIndex > -1 &&
       <Wrap $storyWrap>
@@ -201,13 +187,12 @@ const DayStoryDetail = ({setIsOpenModal, isOpenModal, userId} :DayStoryDetailPro
               </Box>
             </div>
               <Image $mainImage $nightImageBorder>
-                <img loading="lazy" src={storyList[currentIndex].photoUrl}></img>
+                <img loading="lazy" src={storyList[currentIndex].photoUrl} />
               </Image>
               <Text>{storyList[currentIndex].nickName}</Text>
               <Box $challengeContentBox
               style={{padding: "1.5rem"}}
               >
-                {/* <Text>{storyList[currentIndex].challengeDetailContent}</Text> */}
                 {storyList[currentIndex].challengeDetailContent}
               </Box>
           </div>

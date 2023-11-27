@@ -1,18 +1,3 @@
- {/* <ProfileHeader day></ProfileHeader> */}
-
-// 탭 3개
-// 뱃지, 진행중, 완료
-
-// # 뱃지
-{/* <DayProfileBadgeTab></DayProfileBadgeTab> */}
-
-
-// # 진행중
-{/* <DayProfileOngoingTab></DayProfileOngoingTab> */}
-
-// # 완료
-{/* <DayProfileCompleteTab></DayProfileCompleteTab> */}
-
 // 리액트
 import React, { useState } from "react";
 
@@ -46,7 +31,6 @@ const CustomText = styled(Text)<TabStyleType>`
   ${(props) => props.$isActive && 
     css`
       color: #FFE177;
-      // font-weight: 700; // 두껍게 하면 글씨가 겹쳐 잘 안보입니다!
     `
   }
 `
