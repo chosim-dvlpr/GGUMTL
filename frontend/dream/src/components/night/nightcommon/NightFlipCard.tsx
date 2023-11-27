@@ -104,7 +104,7 @@ const NightFlipCard = ({reverseCardData}: ReverseCardProps) => {
       }}>
   {/* <div className="card-image"></div> */}
       <Image $mainImage $nightImageBorder>
-        <img src={reverseCardData?.dreamCardImageUrl}/>
+        <img loading="lazy" src={reverseCardData?.dreamCardImageUrl}/>
       </Image>
         <div className="card-description" style={dreamCardFlipStyle}>
           <NightFlipCardKeyBtnWrap >

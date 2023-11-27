@@ -183,7 +183,7 @@ const AuctionCreate = () => {
     <>
     <Container $baseContainer>
     {/* 이미지 */}
-    <Image $mainImage $nightImageBorder><img src={reverseCardData?.dreamCardImageUrl}/></Image>
+    <Image $mainImage $nightImageBorder><img loading="lazy" src={reverseCardData?.dreamCardImageUrl}/></Image>
     <DreamKeywordRegion keywords={reverseCardData?.keywords}/>
     <DreamCardGrade   
     positiveGrade={reverseCardData?.positiveGrade}  

@@ -1,10 +1,8 @@
-{/* <ProfileHeader night></ProfileHeader> */}
-// 탭 3개(카드, 꿈 받기, 꿈 주기) // 2개 (카드, 꿈주기)
-
 // 리액트
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "store";
+import { useParams } from "react-router-dom";
 
 // 컴포넌트
 import ProfileHeader from "components/common/ProfileHeader";
@@ -12,11 +10,9 @@ import NightProfileCardTab from "./NightProfileCardTab";
 import NightProfileSellingTab from "./NightProfileSellingTab";
 import NightProfileBuyingTab from "./NightProfileBuyingTab";
 
-
 // 스타일
 import styled, {css} from "styled-components";
 import Text from "style/Text";
-import { useParams } from "react-router-dom";
 
 const DreamTabWrap = styled.div`
   display: flex;
@@ -38,7 +34,6 @@ const CustomText = styled(Text)<TabStyleType>`
   ${(props) => props.$isActive && 
     css`
       color: #FFFFFF;
-      // font-weight: 700; // 두껍게 하면 글씨가 겹쳐 잘 안보입니다!
     `
   }
 `

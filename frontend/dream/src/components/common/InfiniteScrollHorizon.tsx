@@ -1,8 +1,6 @@
 // 리액트
 import React, { Dispatch, SetStateAction, useCallback, useEffect } from "react";
 
-// 컴포넌트
-
 // 스타일
 export interface DayChallengeObjType {
   title :string,
@@ -15,21 +13,15 @@ export interface DayChallengeListType extends Array<DayChallengeObjType> {}
 export interface InfiniteScrollProps {
   children ?: any,
   setArriveEnd :Dispatch<SetStateAction<boolean>>,
-  // lastItemId :number,
   component :any,
 } 
 
 
 const InfiniteScrollHorizon = ({
   setArriveEnd, 
-  // lastItemId,
   component
 } :InfiniteScrollProps) => {
   
-
-  // 무한 스크롤
-
-  // 스크롤을 하면서 실행할 내용
   const handleScroll = useCallback((event :any): void => {
     const scrollLeft = event.target.scrollLeft; // 스크롤 바의 위치 가져오기
     const clientWidth = document.documentElement.clientWidth // 화면 너비
@@ -41,7 +33,7 @@ const InfiniteScrollHorizon = ({
         console.log('오른쪽 도달')
       }
     }
-  }, []); // 성능 저하 시 lastItemId 넣어보기
+  }, []);
   
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, true);

@@ -13,7 +13,7 @@ const Loading = () => {
   return (
     <>
     <LoadingContainer>
-      <img src={process.env.PUBLIC_URL + "/image/loadingFin.gif"} />
+      <img loading="lazy" src={process.env.PUBLIC_URL + "/image/loadingFin.gif"} />
       {/* <div>기다려주세요...!</div> */}
     </LoadingContainer>
     </>

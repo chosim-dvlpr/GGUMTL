@@ -62,11 +62,11 @@ const SunsetMain = () => {
   return (
     <SunsetMainContainer>
       <StartIcon onClick={()=>{navigate('/day/main')}}>
-        <img src={`${process.env.PUBLIC_URL}/image/icon/sun.png`}></img>
+        <img loading="lazy" src={`${process.env.PUBLIC_URL}/image/icon/sun.png`}></img>
         <p>낮 꿈 꾸러가기</p>
       </StartIcon>
       <StartIcon onClick={()=>{navigate('/night/main')}}>
-        <img src={`${process.env.PUBLIC_URL}/image/icon/moon.png`}></img>
+        <img loading="lazy" src={`${process.env.PUBLIC_URL}/image/icon/moon.png`}></img>
         <p>밤 꿈 꾸러가기</p>
       </StartIcon>
     {/* <Button >낮 아이콘</Button>

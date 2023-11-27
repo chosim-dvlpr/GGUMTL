@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 let recognition: any = null
 if ("webkitSpeechRecognition" in window) {
@@ -48,7 +48,6 @@ const SoundToText = () => {
     stopListening,
     setAccentText,
     accentText,
-    // hasRecognitionSupport: !! recognition
   }
 }
 

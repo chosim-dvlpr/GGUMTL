@@ -38,7 +38,7 @@ const Login = () => {
     <>
       <LoginContainer>
         <Image $SunsetLogo>
-          <img src={`${process.env.PUBLIC_URL}/logo512.png`}></img>
+          <img loading="lazy" src={`${process.env.PUBLIC_URL}/logo512.png`}></img>
         </Image>
         <Text $SunsetText>함께 꿈을 꾸러갈까요?</Text>
         <Button

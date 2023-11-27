@@ -29,7 +29,7 @@ const ChalContentListItem = ({ chal }: ChalContentListItemProps) => {
         $challengeContentBox
         onClick={() => navigate(`/day/challenge/${chal.challengeId}`)}
       >
-        <img src={chal.badgeUrl}></img>
+        <img loading="lazy" src={chal.badgeUrl}></img>
         <div>
           <div>
             <p>{chal.challengeTitle ? chal.challengeTitle : chal.title}</p>

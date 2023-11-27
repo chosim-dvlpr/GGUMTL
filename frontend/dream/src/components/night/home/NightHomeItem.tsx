@@ -1,13 +1,12 @@
 // 리액트
-import React, {Dispatch, SetStateAction, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 // 외부 파일
-import axios from "axios";
 import { changeDate } from "utils/dateForm";
-import basicHttp from "api/basicHttp";
 
 // 컴포넌트
+import tokenHttp from "api/tokenHttp";
 import NightFlipCard from "../nightcommon/NightFlipCard";
 import Heart from "components/common/Heart";
 
@@ -19,7 +18,6 @@ import Image from "style/Image";
 
 // 타입
 import { NightHomeItemType } from "./NightHomeList";
-import tokenHttp from "api/tokenHttp";
 
 const ProfileDateWrap = styled.div`
   display: flex;
@@ -31,7 +29,6 @@ const ProfileDateWrap = styled.div`
 const ProfileWrap = styled.div`
   display: flex;
   justify-content: start;
-  /* line-height: 100%; */
   & > div:nth-child(2) {
     & > div{
       text-align: center;
@@ -59,7 +56,6 @@ const MarginBot = styled.div`
 // 타입
 export interface NightHomeItemProps {
   cardData : NightHomeItemType;
-  // setUpdated :Dispatch<SetStateAction<boolean>>;
 }
 
 export interface ReverseCardType {
@@ -110,11 +106,9 @@ const NightHomeItem = ({cardData}:NightHomeItemProps) => {
       <ProfileDateWrap>
         <ProfileWrap>
           <CustomImage 
-          // 여기에 이동하는 곳
           onClick={moveUserProfile}
           >
-            {/* 에러나서 주석처리 */}
-            <img src={cardData?.ownerProfileUrl} alt="없음"/>
+            <img loading="lazy" src={cardData?.ownerProfileUrl} alt="없음"/>
           </CustomImage>
           <Text $verticalAlign $nightWhite
           onClick={moveUserProfile}
@@ -129,7 +123,6 @@ const NightHomeItem = ({cardData}:NightHomeItemProps) => {
       {/* 좋아요 버튼 */}
         <Heart 
         isLike={cardData.like}
-        // setIsLikeUpdated={setIsLikeUpdated}
         likedNumber={cardData.likedNumber}
         dreamCardId={cardData.dreamCardId}
         />

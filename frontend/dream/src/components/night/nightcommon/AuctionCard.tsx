@@ -65,7 +65,7 @@ const AuctionCard = ({auctionCard} : AuctionCardProps) => {
       { diffHour() < 3 ? ( diffHour() > 0 ? `마감 ${diffHour()}시간 전` : "종료 임박") : "경매장 입장" }
       </div>
       <div className="auction-card-image">
-        <Image $nightImageBorder $auctionCard><img src={auctionCard?.dreamCardImageUrl}/></Image>
+        <Image $nightImageBorder $auctionCard><img loading="lazy" src={auctionCard?.dreamCardImageUrl}/></Image>
       </div>
       <div className="keyword-region">
         {/* keywords가 객체인 문제임 */}

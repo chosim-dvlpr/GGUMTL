@@ -1,9 +1,8 @@
-// 음성 LongButton
-// WideTextInput
-// 공개 // 버튼 2개
-
 // 리액트
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 // 외부
 import dataHttp from "api/dataHttp";
 import { RootState } from "store";
@@ -20,8 +19,6 @@ import { IoMicOutline, IoMicSharp } from "react-icons/io5"
 import Wrap from "style/Wrap";
 import "components/night/dream/DreamCreate.css"
 import Text from "style/Text";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 
 const DreamCreateContainer = styled.div`
@@ -38,7 +35,6 @@ interface DreamTextAreaWrapperProps {
 const DreamTextAreaWrapper = styled.div<DreamTextAreaWrapperProps>`
   width: 100%;
   height: calc(${props => props.height/16 > 22 ? props.height/16 : 22}rem);
-  // min-height: 22rem;
   margin-bottom: 2rem;
   transition: height 0.3s ease;
 `;
@@ -65,7 +61,6 @@ const DreamCreate = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   
-
   // 녹음 시작 & 종료
   useEffect(() => {
     if (recordStart) {
@@ -89,8 +84,6 @@ const DreamCreate = () => {
 
   // allText: 보낼 데이터
   // isChecked가 공개 여부
-  // userId
-  // const userId:number = 1
   const sendDreamToPython = () => {
     const dreamCardAuthor:number = userId
     const isShow = isChecked ? "T" : "F"
@@ -118,55 +111,55 @@ const DreamCreate = () => {
   return (
     <>
     {isLoading && <Loading/>}
- <DreamCreateContainer>
- {   !isLoading &&
- <>
+      <DreamCreateContainer>
+      { !isLoading &&
+        <>
  
-      <Button
-      $fullWidth
-      $nightVoice
-      onClick={() => {
-        console.log('클릭');
-        setRecordStart(!recordStart); // 녹음 시작, 종료
-        accenting(); // 텍스트로 변환
-      }}
-      $isRecording={recordStart}
-      >
-        {
-          recordStart
-          ? <IconRecording/>
-          : <IconRecord/>
-        }
-        
-      </Button>
-      <DreamTextAreaWrapper height={textAreaHeight}>
-        <TextArea
-        $nightDreamInput
-        id="textarea"
-        value={allText}
-        onChange={(e) => setAllText(e.target.value)}
-        />
-      </DreamTextAreaWrapper>
+          <Button
+          $fullWidth
+          $nightVoice
+          onClick={() => {
+            console.log('클릭');
+            setRecordStart(!recordStart); // 녹음 시작, 종료
+            accenting(); // 텍스트로 변환
+          }}
+          $isRecording={recordStart}
+          >
+            {
+              recordStart
+              ? <IconRecording/>
+              : <IconRecord/>
+            }
+            
+          </Button>
+          <DreamTextAreaWrapper height={textAreaHeight}>
+            <TextArea
+            $nightDreamInput
+            id="textarea"
+            value={allText}
+            onChange={(e) => setAllText(e.target.value)}
+            />
+          </DreamTextAreaWrapper>
 
-      <Wrap $nightBotButtonWrap $nightButtonCheckWrap>
-        <div>
-          <label className="container">
-            <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}/>
-            <div className="checkmark"></div>
-            <Text $nightWhite>공개</Text>
-          </label>
-        </div>
-        <div>
-          <Button $nightPalePurple onClick={() => navigate(`/night/main`)}>취소</Button>
-          <Button 
-          $nightPurple
-          onClick={sendDreamToPython}
-          >등록</Button>
-        </div>
-      </Wrap>
-      </>
-    }
-    </DreamCreateContainer>
+          <Wrap $nightBotButtonWrap $nightButtonCheckWrap>
+            <div>
+              <label className="container">
+                <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}/>
+                <div className="checkmark"></div>
+                <Text $nightWhite>공개</Text>
+              </label>
+            </div>
+            <div>
+              <Button $nightPalePurple onClick={() => navigate(`/night/main`)}>취소</Button>
+              <Button 
+              $nightPurple
+              onClick={sendDreamToPython}
+              >등록</Button>
+            </div>
+          </Wrap>
+        </>
+      }
+      </DreamCreateContainer>
     </>
   )
 }

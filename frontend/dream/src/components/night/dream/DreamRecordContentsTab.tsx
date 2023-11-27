@@ -1,9 +1,9 @@
 // 리액트
 import React, {Dispatch, SetStateAction, useEffect, useState} from "react";
-import tokenHttp from "api/tokenHttp";
 import { useNavigate, useParams } from "react-router-dom";
 
 // 컴포넌트
+import tokenHttp from "api/tokenHttp";
 import Button from "components/common/Button";
 
 // 스타일
@@ -11,7 +11,6 @@ import styled, {css} from "styled-components";
 import { Box } from "style/Box";
 import Text from "style/Text";
 import "components/night/dream/DreamCreate.css"
-import Wrap from "style/Wrap";
 import { ReverseCardType } from "../home/NightHomeItem";
 
 const DreamContentsTabWrap = styled.div`
@@ -22,7 +21,6 @@ const DreamContentsTabWrap = styled.div`
 const DreamTabWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  // margin: inherit;
   & > div {
     text-align: center;
   }
@@ -101,6 +99,7 @@ const DreamRecordContentsTab = ({setReverseCardData, setReviewStatus} :DreamReco
   const params = useParams();
   const [dreamCardData, setDreamCardData] = useState<dreamCardDataType>();
   const [chalList, setChalList] = useState<number[]>()
+
   useEffect(() => {
     tokenHttp.get(`/night/dream/${params.dreamCardId}/interpretation`)
     .then((res)=>{
@@ -116,7 +115,6 @@ const DreamRecordContentsTab = ({setReverseCardData, setReviewStatus} :DreamReco
         setDreamCardData(data)
         setChalList(data.challengeList)
         setRecommendChal(data.challengeList[Math.floor(Math.random() *  data.challengeList.length)])
-        // setReviewStatus(data.reviewStatus)
       }
 
     })
@@ -143,7 +141,6 @@ const DreamRecordContentsTab = ({setReverseCardData, setReviewStatus} :DreamReco
         auctionId : dreamCardData?.auctionId,
       }
       setReverseCardData(data)
-      // setReviewStatus 함수가 정의되어 있을 때만 호출
       if (setReviewStatus) {
         setReviewStatus(dreamCardData.reviewStatus);
       }
@@ -155,7 +152,6 @@ const DreamRecordContentsTab = ({setReverseCardData, setReviewStatus} :DreamReco
 
   return (
     <>
-    
     <DreamContentsTabWrap>
       <Button $fullWidth $nightPalePurple $dreamDetail
         onClick={()=> {
@@ -180,34 +176,6 @@ const DreamRecordContentsTab = ({setReverseCardData, setReviewStatus} :DreamReco
         <Box $wideTextBox $night>{dreamCardData?.dreamCardContent}</Box>
       }
       {isInterpretTab && <Box $wideTextBox $night>{dreamCardData?.dreamTelling}</Box>}
-    
-      {/* <Wrap $nightBotButtonWrap $nightButtonCheckWrap>
-        <div>
-          <label className="container">
-            <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}/>
-            <div className="checkmark"></div>
-            <Text $nightWhite>공개</Text>
-          </label>
-        </div>
-        <div>
-          <Button 
-          $nightPalePurple
-          onClick={() => deleteDreamCard()}
-          >삭제</Button>
-          {
-            dreamCardData?.dreamCardAuthor != dreamCardData?.dreamOwner
-            ? dreamCardData?.reviewStatus === "F" &&
-              <Button 
-              $nightPurple 
-              onClick={() => navigate(`/night/auction/bidding/review`)}>리뷰</Button>
-            : <Button 
-              $nightPurple
-              onClick={() => navigate(`/night/auction/detail/${dreamCardData?.dreamCardId}/create`)}
-              >경매</Button>
-          }
-          
-        </div>
-      </Wrap> */}
     </DreamContentsTabWrap>
     </>
   )

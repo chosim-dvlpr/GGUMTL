@@ -1,26 +1,18 @@
-{/* <FlipCard></FlipCard> */}
-
-// 좋아요
-
-{/* <DreamRecordContentsTab></DreamRecordContentsTab> */}
-
-// 공개 // 버튼 2개
-
 // 리액트
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 // 컴포넌트
 import DreamRecordContentsTab from "./DreamRecordContentsTab";
 import NightFlipCard from "../nightcommon/NightFlipCard";
+import tokenHttp from "api/tokenHttp";
+
+// 스타일
 import { ReverseCardType } from "../home/NightHomeItem";
 import Button from "components/common/Button";
-import tokenHttp from "api/tokenHttp";
-import { useNavigate } from "react-router";
 import Wrap from "style/Wrap";
 import Text from "style/Text";
 import Swal from "sweetalert2";
-
-// 스타일
 
 const DreamDetail = () => {
   const navigate = useNavigate();

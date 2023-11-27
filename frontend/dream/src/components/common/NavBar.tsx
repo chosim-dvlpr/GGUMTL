@@ -39,6 +39,7 @@ const NavBar = () => {
       <Bar $nav $day={!nightDayMode} $night={nightDayMode}>
         <div>
           <img
+            loading='lazy'
             style={{ margin: '0.4rem' }}
             src={`${process.env.PUBLIC_URL}/logo512.png`}
             alt="로고"

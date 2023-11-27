@@ -63,7 +63,7 @@ const ChalDetailInfo: React.FC<ChalDetailInfoProps> = (props) => {
             <Box $fullWidth $chalDetailBox>
               <BoxTitle $boxTitle>획득 뱃지</BoxTitle>
               <Image $badge>
-                <img src={chalDetail.badgeUrl} alt="뱃지 이미지" />
+                <img loading='lazy' src={chalDetail.badgeUrl} alt="뱃지 이미지" />
                 {/* <img src={chalDetail.badgeUrl} alt="뱃지 이미지" /> */}
               </Image>
             </Box>
