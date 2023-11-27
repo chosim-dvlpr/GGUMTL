@@ -164,7 +164,7 @@ const ProfileHeader = () => {
         <Image
         $smallProfileImage
         >
-          <img src={userData?.profileImageUrl} alt={userData?.profileImageName}/>
+          <img loading="lazy" src={userData?.profileImageUrl} alt={userData?.profileImageName}/>
         </Image>
         <Text
         $nightWhite={isNight}
