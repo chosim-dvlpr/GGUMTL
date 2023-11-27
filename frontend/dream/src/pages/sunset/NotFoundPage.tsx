@@ -36,7 +36,7 @@ const NotFoundPage = () => {
   return (
     <>
     <NotFound>
-      <img src={`${process.env.PUBLIC_URL}/image/404page/404page.gif`}></img>   
+      <img loading="lazy" src={`${process.env.PUBLIC_URL}/image/404page/404page.gif`}></img>   
       <GoButton>
         <Button 
           $goHomeButton
