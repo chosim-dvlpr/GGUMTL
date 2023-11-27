@@ -172,7 +172,7 @@ const AuctionDetail = () => {
     <>
     <Container $baseContainer>
       <Image $mainImage $nightImageBorder>
-        <img src={auctionItem?.dreamCardImageUrl}
+        <img loading="lazy" src={auctionItem?.dreamCardImageUrl}
         />
       </Image>
     </Container>

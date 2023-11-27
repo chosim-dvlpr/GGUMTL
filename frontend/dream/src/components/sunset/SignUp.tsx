@@ -170,7 +170,9 @@ const SignUp = () => {
 
       {/* 프로필 이미지 미리보기*/}
       <Image $signupImage>
-        <img src={ profileImageURL ? profileImageURL : `${process.env.PUBLIC_URL}/image/default-profile.png`}></img>
+        <img 
+        loading="lazy" 
+        src={ profileImageURL ? profileImageURL : `${process.env.PUBLIC_URL}/image/default-profile.png`}></img>
       </Image>
       <input 
         type="file"
