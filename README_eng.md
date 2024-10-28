@@ -46,16 +46,19 @@ Can we create a better day by analyzing these dreams?
 - Identify the closest matching dream in the existing dataset
 - Use weights such as text similarity and sentiment analysis
 <br/>
+
 📌 **Key Feature: Dream Cards**
 
 - Extract keywords based on submitted dream text
 - Generate images with the generative AI model, Carlo, using extracted keywords
 - Provide "positive dream" and "rarity" scores for dream cards
 <br/>
+
 📌 **Key Feature: Dream Card Auction**
 
 - Exchange generated dream cards with other users
 <br/>
+
 📌 **Key Feature: Challenges**
 
 - Achieve goals together by participating in challenges
